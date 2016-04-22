@@ -1,6 +1,14 @@
 <h1>Here's your puzzle:</h1>
   <h2>"$puzzleshow"</h2>
 
-<br>
 <h3>Hint</h3>
 First five letters: $hiddenletter1$hiddenletter2$hiddenletter3$hiddenletter4$hiddenletter5
+
+<h3>Solve</h3>
+<form action='/solve' method='get'>
+  <div class="form-group">
+<label for="solveInput">Solve the puzzle:</label>
+<input name="solveInput" id="userInput">
+</div>
+<button type="submit" class="btn">Go!</button>
+  </form>

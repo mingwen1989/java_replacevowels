@@ -22,6 +22,7 @@ public class App {
       model.put("template", "templates/results.vtl");
 
       String inputString = request.queryParams("userInput");
+      String solveString = request.queryParams("solveInput");
 
       ReplaceVowel newReplace = new ReplaceVowel();
       String puzzleshow = newReplace.runReplaceVowel(inputString);
@@ -41,6 +42,19 @@ public class App {
       model.put("hiddenletter3", hiddenletter3);
       model.put("hiddenletter4", hiddenletter4);
       model.put("hiddenletter5", hiddenletter5);
+
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/solve", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/solve.vtl");
+
+      String inputString = request.queryParams("userInput");
+      String solveString = request.queryParams("solveInput");
+
+      model.put("inputString", inputString);
+      model.put("solveString", solveString);
 
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
