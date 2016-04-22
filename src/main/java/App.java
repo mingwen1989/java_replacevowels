@@ -14,21 +14,23 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/home.vtl");
+      model.put("userInput", request.session().attribute("userInput"));
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/results", (request, response) -> {
+    post("/results", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("inputString", request.session().attribute("inputString"));
+
+      String userInputString = request.queryParams("userInput");
+      request.session().attribute("userInput", userInputString);
+      model.put("userInput", userInputString);
 
       model.put("template", "templates/results.vtl");
 
-      String inputString = request.queryParams("userInput");
-
       ReplaceVowel newReplace = new ReplaceVowel();
-      String puzzleshow = newReplace.runReplaceVowel(inputString);
+      String puzzleshow = newReplace.runReplaceVowel(userInputString);
 
-      String[] stringArray = inputString.split("");
+      String[] stringArray = userInputString.split("");
 
       String hiddenletter1 = stringArray[0];
       String hiddenletter2 = stringArray[1];
@@ -46,17 +48,15 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/solve", (request, response) -> {
+    get("/solve", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-
-      String inputtedPhrase = request.queryParams("solveInput");
-      request.session().attribute("solveInput", inputtedPhrase);
-      model.put("solveInput", inputtedPhrase);
-
       model.put("template", "templates/solve.vtl");
 
+      String inputString = request.queryParams("userInput");
       String solveString = request.queryParams("solveInput");
 
+      request.session().attribute("userInput");
+      model.put("userInput", request.session().attribute("userInput"));
       model.put("solveString", solveString);
 
       return new ModelAndView(model, layout);
