@@ -22,7 +22,6 @@ public class App {
       model.put("template", "templates/results.vtl");
 
       String inputString = request.queryParams("userInput");
-      String solveString = request.queryParams("solveInput");
 
       ReplaceVowel newReplace = new ReplaceVowel();
       String puzzleshow = newReplace.runReplaceVowel(inputString);
