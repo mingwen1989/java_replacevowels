@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class ReplaceVowel {
 
   public static String runReplaceVowel(String userString) {
+
     HashMap<String, String> vowelLookUp = new HashMap<String, String>();
     vowelLookUp.put("a", "-");
     vowelLookUp.put("e", "-");
@@ -27,5 +28,6 @@ public class ReplaceVowel {
         vowelOutput += letters;
       }
   } return vowelOutput;
-}
+
+  }
 }
