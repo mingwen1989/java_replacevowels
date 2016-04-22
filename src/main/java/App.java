@@ -19,6 +19,8 @@ public class App {
 
     get("/results", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("inputString", request.session().attribute("inputString"));
+
       model.put("template", "templates/results.vtl");
 
       String inputString = request.queryParams("userInput");
@@ -34,7 +36,6 @@ public class App {
       String hiddenletter4 = stringArray[3];
       String hiddenletter5 = stringArray[4];
 
-      model.put("inputString", inputString);
       model.put("puzzleshow", puzzleshow);
       model.put("hiddenletter1", hiddenletter1);
       model.put("hiddenletter2", hiddenletter2);
@@ -45,14 +46,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/solve", (request, response) -> {
+    post("/solve", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+
+      String inputtedPhrase = request.queryParams("solveInput");
+      request.session().attribute("solveInput", inputtedPhrase);
+      model.put("solveInput", inputtedPhrase);
+
       model.put("template", "templates/solve.vtl");
 
-      String inputString = request.queryParams("userInput");
       String solveString = request.queryParams("solveInput");
 
-      model.put("inputString", inputString);
       model.put("solveString", solveString);
 
       return new ModelAndView(model, layout);
