@@ -8,8 +8,8 @@ The replace vowels puzzle outputs a user-defined phrase with vowels replaced by 
 
 ## Setup and Installation Requirements
 
-Clone the repo.
-Run a instance of the gradle web server with 'gradle run'.
+Clone the repo.  
+Run a instance of the gradle web server with 'gradle run'.  
 Navigate to localhost:4567 to view the puzzle in action.
 
 ### License
