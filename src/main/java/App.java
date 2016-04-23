@@ -55,7 +55,6 @@ public class App {
       String inputString = request.queryParams("userInput");
       String solveString = request.queryParams("solveInput");
 
-      request.session().attribute("userInput");
       model.put("userInput", request.session().attribute("userInput"));
       model.put("solveString", solveString);
 

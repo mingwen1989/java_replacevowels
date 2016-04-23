@@ -32,9 +32,7 @@ public class AppTest extends FluentTest {
 
   @Test
   public void isAValidSolution() {
-    goTo("http://localhost:4567/results?userInput=temporary");
-    fill("#solveInput").with("temporary");
-    submit(".btn");
+    goTo("http://localhost:4567/solve?solveInput=temporary");
     assertThat(pageSource()).contains("temporary");
   }
 }
