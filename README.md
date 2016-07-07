@@ -11,6 +11,8 @@ The replace vowels puzzle outputs a user-defined phrase with vowels replaced by 
   Clone the repo.  
   Run a instance of the gradle web server with 'gradle run'.  
   Navigate to localhost:4567 to view the puzzle in action.
+  
+  Additionally, tests can be run with 'gradle test'.
 
 ### License
 
